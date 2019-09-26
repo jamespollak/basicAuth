@@ -23,6 +23,7 @@ router.post("/register", (req, res) => {
       });
     })
     .then(userCreated => {
+      req.session.user = userCreated
       res.redirect("/users");
     })
     .catch(err => {
@@ -57,7 +58,7 @@ router.post("/login", (req, res, next) => {
         //storing session in our database
         //and set cookie in client.
         const session = req.session;
-        session.currentUser = currentUser;
+        session.user = currentUser;
         res.redirect("/profile");
         return;
       } else {

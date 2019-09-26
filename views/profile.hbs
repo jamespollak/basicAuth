@@ -1,1 +1,28 @@
 <h1>Hello {{user.name}}</h1>
+
+<h1>Add a post</h1>
+
+<form action='/posts' method="post">
+    <input type="text" placeholder="Title" name="title">
+    <input type="text" placeholder="Content" name="content">
+    <input type="submit">
+</form>
+
+<h1>My Posts</h1>
+
+{{#each user.posts}}
+<ul>
+    <li>{{this.title}}</li>
+    <li>{{this.content}}</li>
+</ul>
+{{/each}}
+
+<form action="/profile/edit/profileImg" method="POST" enctype="multipart/form-data">
+    <input type="file" name="profileImg">
+    <input type="submit">
+
+    {{#if ussr.profileImg}}
+    <img src="/images/profile/{{user.profileImg}}" alt="">
+    {{/if}}
+
+</form>
